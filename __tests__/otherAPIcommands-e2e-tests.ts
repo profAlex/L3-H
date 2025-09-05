@@ -1,6 +1,6 @@
 import express from "express";
 import {setupApp} from "../src/setup-app";
-import {dataRepository} from "../src/repository/blogger-repository";
+import {dataRepository} from "../src/repository/blogger-mongodb-repository";
 import request from "supertest";
 import {TESTING_PATH} from "../src/routers/router-pathes";
 import {HttpStatus} from "../src/core/http-statuses";

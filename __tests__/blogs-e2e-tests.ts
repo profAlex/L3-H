@@ -3,7 +3,7 @@ import express from "express";
 import {setupApp} from "../src/setup-app";
 import {BlogInputModel} from "../src/types/blog-input-model";
 import {BLOGS_PATH} from "../src/routers/router-pathes";
-import {dataRepository} from "../src/repository/blogger-repository";
+import {dataRepository} from "../src/repository/blogger-mongodb-repository";
 import {HttpStatus} from "../src/core/http-statuses";
 
 describe("Test API for managing blogs(bloggers)", () =>{

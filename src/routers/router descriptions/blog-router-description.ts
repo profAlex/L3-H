@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
 import {HttpStatus} from "../../core/http-statuses";
-import {dataRepository} from "../../repository/blogger-repository";
+import {dataRepository} from "../../repository/blogger-mongodb-repository";
 
 export const getAllBlogs = (req:Request, res:Response) => {
     res.status(HttpStatus.Ok).json(dataRepository.getAllBlogs());
