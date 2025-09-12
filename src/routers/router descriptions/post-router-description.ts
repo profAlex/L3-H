@@ -3,16 +3,17 @@ import {HttpStatus} from "../../core/http-statuses";
 import {dataRepository} from "../../repository/blogger-mongodb-repository";
 
 
-export const getAllPosts= (req:Request, res:Response) => {
-    res.status(HttpStatus.Ok).json(dataRepository.getAllPosts());
+export const getAllPosts= async (req:Request, res:Response) => {
+    res.status(HttpStatus.Ok).json(await dataRepository.getAllPosts());
 };
 
-export const createNewPost= (req:Request, res:Response) => {
-    res.status(HttpStatus.Created).json(dataRepository.createNewPost(req.body));
+export const createNewPost= async (req:Request, res:Response) => {
+    const result = await dataRepository.createNewPost(req.body)
+    res.status(HttpStatus.Created).json(result);
 };
 
-export const findSinglePost= (req:Request, res:Response) => {
-    const result = dataRepository.findSinglePost(req.params.id);
+export const findSinglePost= async (req:Request, res:Response) => {
+    const result = await dataRepository.findSinglePost(req.params.id);
 
     if(result === undefined)
     {
@@ -22,8 +23,8 @@ export const findSinglePost= (req:Request, res:Response) => {
     res.status(HttpStatus.Ok).json(result);
 };
 
-export const updatePost= (req:Request, res:Response) => {
-    const result = dataRepository.updatePost(req.params.id, req.body);
+export const updatePost= async (req:Request, res:Response) => {
+    const result = await dataRepository.updatePost(req.params.id, req.body);
 
     if(result === undefined)
     {
@@ -33,8 +34,8 @@ export const updatePost= (req:Request, res:Response) => {
     res.sendStatus(HttpStatus.NoContent);
 };
 
-export const deletePost = (req:Request, res:Response) => {
-    const result = dataRepository.deletePost(req.params.id);
+export const deletePost = async (req:Request, res:Response) => {
+    const result = await dataRepository.deletePost(req.params.id);
 
     if(result === undefined)
     {

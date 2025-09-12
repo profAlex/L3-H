@@ -4,7 +4,7 @@ import {HttpStatus} from "../core/http-statuses";
 
 export const testingRouter = Router();
 
-testingRouter.delete('/all-data', (req: Request, res: Response) => {
-    dataRepository.deleteAllBloggers();
+testingRouter.delete('/all-data', async (req: Request, res: Response) => {
+    await dataRepository.deleteAllBloggers();
     res.sendStatus(HttpStatus.NoContent);
 })

@@ -1,3 +1,4 @@
+"use strict";
 // import {BlogViewModel} from "../types/blog-view-model";
 // import {BlogInputModel} from "../types/blog-input-model";
 // import {PostViewModel} from "../types/post-view-model";
