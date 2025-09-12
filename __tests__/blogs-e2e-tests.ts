@@ -224,6 +224,62 @@ describe("Test API for managing blogs(bloggers)", () =>{
         const anotherResults = await request(testApp).get(`${BLOGS_PATH}/${blogId_1}`);
         expect(anotherResults.status).toBe(HttpStatus.NotFound);
     });
+
+    it("", async () => {
+        const res = await request(testApp).delete(`${TESTING_PATH}/all-data`);
+        expect(res.status).toBe(204);
+    });
+
+    it("Creating test base entries, directly without endpoint calls", async () => {
+
+        const newBlog_1: BlogInputModel = {
+            name: "blogger_001",
+            description: "takoy sebe blogger...",
+            websiteUrl: "https://takoy.blogger.com",
+        }
+        const insertedBlog_1 = await dataRepository.createNewBlog(newBlog_1);
+        blogId_1 = insertedBlog_1.id;
+
+        const newPost_1: PostInputModel = {
+            title: "post blog 001",
+            shortDescription: "post ni o 4em",
+            content: "Eto testovoe napolnenie posta 001_001",
+            blogId: blogId_1,
+        }
+        await dataRepository.createNewPost(newPost_1);
+
+        const newPost_2 =    {
+            title: "post blog 002",
+            shortDescription: "post ni o 4em",
+            content: "Eto testovoe napolnenie posta 001_002",
+            blogId: blogId_1,
+        }
+        await dataRepository.createNewPost(newPost_2);
+
+        const newBlog_2: BlogInputModel = {
+            name: "blogger_002",
+            description: "a eto klassnii blogger!",
+            websiteUrl: "https://klassnii.blogger.com",
+        }
+        const insertedBlog_2 = await dataRepository.createNewBlog(newBlog_2);
+        blogId_2 = insertedBlog_2.id;
+
+        const newPost_3: PostInputModel = {
+            title: "post blog 001",
+            shortDescription: "horowii post",
+            content: "Eto testovoe napolnenie posta 002_001",
+            blogId: blogId_2,
+        }
+        await dataRepository.createNewPost(newPost_3);
+
+        const newPost_4: PostInputModel = {
+            title: "post blog 002",
+            shortDescription: "horowii post",
+            content: "Eto testovoe napolnenie posta 002_002",
+            blogId: blogId_2,
+        }
+        await dataRepository.createNewPost(newPost_4);
+    });
 });
 
 
